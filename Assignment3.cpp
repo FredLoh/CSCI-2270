@@ -5,44 +5,21 @@
 
 using namespace std;
 
-int printMenu(int choice) { //returns number depending on choice.
+struct city {
+  string name;
+  string message;
+  node *next;
+  node *prev;
+};
 
-	if(choice == 1)
-	{
-		cout << "Build Network" << endl;
-	}
-	else if(choice == 2)
-	{
-		//testing
-	}
-	else if(choice == 3)
+// int printMenu(int choice) { //returns number depending on choice.
 
-	{
-		//
-	}
-	else if(choice == 4)
-	{
-		//
-	}
-	else if(choice == 5)
-	{
-		//
-	}
-	else if(choice == 6)
-	{
-		//
-	}
-	else if(choice == 7)
-	{
-		//
-	}
-	else
-	{
-		cout << "Wrong choice detected, please choose again!";
-	}
+// }
+
+city *addCity(city *head, city *previous, string cityName)
+{]
+
 }
-
-// city *addCity(city *head, city *previous,	string cityName)
 
 // /*Add	a	new	city	to	the	linked	list	between	the	city	*previous	and	the	city	that	
 // follows	it	in	the	network.	The	name	of	the	new	city	is	in	the	argument	cityName.	
@@ -75,6 +52,11 @@ int printMenu(int choice) { //returns number depending on choice.
 
 
 int main(int argc, char *argv[]) { //allows for command line arguments
+	
+
+
+	node *root;
+
 	cout << "======Main Menu======" << endl;
 	cout << "1. Build Network" << endl;
 	cout << "2. Print Network Path" << endl;
@@ -85,8 +67,39 @@ int main(int argc, char *argv[]) { //allows for command line arguments
 	cout << "7. Quit" << endl;
 	
 	std::string input;
-	int intInput = stoi(input);
-	cin >> intInput;
 	// int intInput = stoi(input);
-	printMenu(intInput);
+	cin >> input;
+	if(input == "1")
+	{
+		cout << "Build Network" << endl;
+	}
+	else if(input == "2")
+	{
+		cout << "Print Network Path" << endl;
+	}
+	else if(input == "3")
+
+	{
+		//
+	}
+	else if(input == "4")
+	{
+		//
+	}
+	else if(input == "5")
+	{
+		//
+	}
+	else if(input == "6")
+	{
+		//
+	}
+	else if(input == "7")
+	{
+		//
+	}
+	else
+	{
+		cout << "Wrong choice detected, please choose again!" << endl;
+	}
 }	
