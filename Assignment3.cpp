@@ -8,8 +8,8 @@ using namespace std;
 struct city {
   string name;
   string message;
-  node *next;
-  node *prev;
+  city *next;
+  city *prev;
 };
 
 // int printMenu(int choice) { //returns number depending on choice.
@@ -17,8 +17,11 @@ struct city {
 // }
 
 city *addCity(city *head, city *previous, string cityName)
-{]
-
+{
+	city *cityName;	
+	cityName = new city;
+	cityName->prev = previous;
+	return head;
 }
 
 // /*Add	a	new	city	to	the	linked	list	between	the	city	*previous	and	the	city	that	
@@ -55,7 +58,7 @@ int main(int argc, char *argv[]) { //allows for command line arguments
 	
 
 
-	node *root;
+	city *head;
 
 	cout << "======Main Menu======" << endl;
 	cout << "1. Build Network" << endl;
