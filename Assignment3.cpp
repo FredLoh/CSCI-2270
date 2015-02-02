@@ -18,9 +18,9 @@ struct city {
 
 city *addCity(city *head, city *previous, string cityName)
 {
-	city *cityName;	
-	cityName = new city;
-	cityName->prev = previous;
+	head = new city;
+	head->prev = previous;
+	head->name = cityName;
 	return head;
 }
 
