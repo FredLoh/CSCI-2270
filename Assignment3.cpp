@@ -40,7 +40,23 @@ city *addCity(city *head, city *previous, string cityName)
 // Return	the	head	of	the	linked	list.	
 // */
 
-// city *deleteCity(city *head, string	cityName)
+city *deleteCity(city *head, string cityName)
+{
+	city *cityDeleter;
+	city *deletePrev;
+	city *deleteNext;
+	cityDeleter = head;
+	while(cityDeleter->name != cityName)
+	{
+		cityDeleter = cityDeleter->next;
+	}
+	deletePrev = cityDeleter->prev;
+	deleteNext = cityDeleter->next;
+	delete cityDeleter;
+	deletePrev->next = deleteNext;
+	deleteNext->prev = deletePrev;
+	return head;
+}
 
 // /*Delete	the	city	in	the	linked	list	with	the	specified name.	Return	the	head	of	the	
 // linked	list.	*/
@@ -222,7 +238,19 @@ int main(int argc, char *argv[]) { //allows for command line arguments
 		
 		else if(input == "5")
 		{
-			//
+			cout << "Enter a city name to delete:" << endl;
+			string cityToDelete;
+			cin >> cityToDelete;
+
+			while(listPointer != NULL)
+			{
+				if(listPointer->name == cityToDelete)
+				{
+					deleteCity(head, cityToDelete);
+				}
+				listPointer = listPointer->next;
+			}
+			listPointer=head;
 		}
 		
 		else if(input == "6")
