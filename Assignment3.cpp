@@ -18,9 +18,20 @@ struct city {
 
 city *addCity(city *head, city *previous, string cityName)
 {	
-	head = new city;
-	head->prev = previous;
-	head->name = cityName;
+	city *cityAdder; //pointer to go through the linked list.
+	city *temp; //will hold the 
+	cityAdder = head;
+	while(cityAdder->prev != previous)
+	{
+		cityAdder = cityAdder->next;
+	}
+	cityAdder = new city;
+	temp = previous->next;
+	previous->next = cityAdder;
+	cityAdder->next = temp;
+	cityAdder->prev = previous;
+	cityAdder->name = cityName;
+	head = head;
 	return head;
 }
 
@@ -190,7 +201,23 @@ int main(int argc, char *argv[]) { //allows for command line arguments
 		
 		else if(input == "4")
 		{
-			//
+			cout << "Enter a city name:" << endl;
+			string nameOfCity;
+			cin >> nameOfCity;
+			
+			cout << "Enter a previous city name:" << endl;
+			string previousCity;
+			cin >> previousCity;
+
+			while(listPointer != NULL)
+			{
+				if(listPointer->name == previousCity)
+				{
+					addCity(head, listPointer, nameOfCity);
+				}
+				listPointer = listPointer->next;
+			}
+			listPointer=head;
 		}
 		
 		else if(input == "5")
