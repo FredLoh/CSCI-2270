@@ -34,12 +34,42 @@ city *addCity(city *head, city *previous, string cityName)
 // /*Delete	the	city	in	the	linked	list	with	the	specified name.	Return	the	head	of	the	
 // linked	list.	*/
 
-// void transmitMsg(city *head)
-
-// Open	the	file	messageLn.txt	and	transmit	the	message	between	all	cities	in	the	
-// network	word	by	word.	A	word	needs	to	be	received	at	the	end	of	the	network	
-// before	sending	the	next word.	Only	one	city	can	hold	the	message	at	a	time;	as	soon	
-// as	it	is	passed	to	the	next	city,	it	needs	to	be	deleted	from	the	sender	city.	
+/* Open	the	file	messageLn.txt	and	transmit	the	message	between	all	cities	in	the	
+network	word	by	word.	A	word	needs	to	be	received	at	the	end	of	the	network	
+before	sending	the	next word.	Only	one	city	can	hold	the	message	at	a	time;	as	soon	
+as	it	is	passed	to	the	next	city,	it	needs	to	be	deleted	from	the	sender	city. */
+void transmitMsg(city *head)
+{
+	city *messageTransmiter;
+	messageTransmiter = head;
+	string word;
+	ifstream message;
+	message.open("messageIn.txt");
+	while(!message.eof())
+	{
+		while(message >> word)
+		{
+			while(messageTransmiter->next != NULL)
+			{
+				if(messageTransmiter == head)
+				{
+				messageTransmiter->message = word;
+				cout << messageTransmiter->name << " received " << messageTransmiter->message << endl;
+				messageTransmiter = messageTransmiter->next;
+				}
+				else
+				{
+				messageTransmiter->message = word;
+				messageTransmiter->prev->message = "";
+				cout << messageTransmiter->name << " received " << messageTransmiter->message << endl;
+				// cout << messageTransmiter->prev->name << " received " << messageTransmiter->prev->message << endl; //Eraser checker.
+				messageTransmiter = messageTransmiter->next;
+				}
+			}
+			messageTransmiter = head;
+		}
+	}
+}
 
 // city *deleteEntireNetwork(city *head)
 // /*This	function	deletes	all	cities	in	the	network	starting	at	the	head	city.	The	
@@ -117,14 +147,23 @@ int main(int argc, char *argv[]) { //allows for command line arguments
 			listPointer = head;
 			
 			LosAngeles->next = Phoenix;
+			Phoenix->prev = LosAngeles;
 			Phoenix->next = Denver;
-			Denver->next = Dallas;  
+			Denver->prev = Phoenix;  
+			Denver->next = Dallas;
+			Dallas->prev = Denver;
 			Dallas->next = StLouis;
+			StLouis->prev = Dallas;
 			StLouis->next = Chicago;
+			Chicago->prev = StLouis;
 			Chicago->next = Atlanta;
+			Atlanta->prev = Chicago;
 			Atlanta->next = DC;
+			DC->prev = Atlanta;
 			DC->next = NY;
+			NY->prev = DC;
 			NY->next = Boston;
+			Boston->prev = NY;
 			Boston->next = lastCity;
 
 			
@@ -146,7 +185,7 @@ int main(int argc, char *argv[]) { //allows for command line arguments
 		else if(input == "3")
 
 		{
-			//
+			transmitMsg(head);
 		}
 		
 		else if(input == "4")
